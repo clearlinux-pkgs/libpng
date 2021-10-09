@@ -4,13 +4,14 @@
 #
 Name     : libpng
 Version  : 1.6.37
-Release  : 62
+Release  : 63
 URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.37/libpng-1.6.37.tar.xz
 Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.37/libpng-1.6.37.tar.xz
 Summary  : Loads and saves PNG files
 Group    : Development/Tools
 License  : GPL-2.0 Libpng MIT zlib-acknowledgement
 Requires: libpng-bin = %{version}-%{release}
+Requires: libpng-filemap = %{version}-%{release}
 Requires: libpng-lib = %{version}-%{release}
 Requires: libpng-license = %{version}-%{release}
 Requires: libpng-man = %{version}-%{release}
@@ -32,6 +33,7 @@ See INSTALL for instructions on how to install libpng.
 Summary: bin components for the libpng package.
 Group: Binaries
 Requires: libpng-license = %{version}-%{release}
+Requires: libpng-filemap = %{version}-%{release}
 
 %description bin
 bin components for the libpng package.
@@ -60,10 +62,19 @@ Requires: libpng-dev = %{version}-%{release}
 dev32 components for the libpng package.
 
 
+%package filemap
+Summary: filemap components for the libpng package.
+Group: Default
+
+%description filemap
+filemap components for the libpng package.
+
+
 %package lib
 Summary: lib components for the libpng package.
 Group: Libraries
 Requires: libpng-license = %{version}-%{release}
+Requires: libpng-filemap = %{version}-%{release}
 
 %description lib
 lib components for the libpng package.
@@ -109,20 +120,20 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1604898788
+export SOURCE_DATE_EPOCH=1633757183
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -O3 -falign-functions=32 -ffat-lto-objects -flto=4 -fno-math-errno -fno-semantic-interposition -fno-trapping-math -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FCFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export FFLAGS="$FFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
+export CXXFLAGS="$CXXFLAGS -O3 -Ofast -falign-functions=32 -ffat-lto-objects -flto=auto -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mprefer-vector-width=256 "
 %configure --disable-static --enable-intel-sse --enable-hardware-optimizations
 make  %{?_smp_mflags}
 
 pushd ../build32/
-export PKG_CONFIG_PATH="/usr/lib32/pkgconfig"
+export PKG_CONFIG_PATH="/usr/lib32/pkgconfig:/usr/share/pkgconfig"
 export ASFLAGS="${ASFLAGS}${ASFLAGS:+ }--32"
 export CFLAGS="${CFLAGS}${CFLAGS:+ }-m32 -mstackrealign"
 export CXXFLAGS="${CXXFLAGS}${CXXFLAGS:+ }-m32 -mstackrealign"
@@ -132,11 +143,11 @@ make  %{?_smp_mflags}
 popd
 unset PKG_CONFIG_PATH
 pushd ../buildavx2/
-export CFLAGS="$CFLAGS -m64 -march=haswell"
-export CXXFLAGS="$CXXFLAGS -m64 -march=haswell"
-export FFLAGS="$FFLAGS -m64 -march=haswell"
-export FCFLAGS="$FCFLAGS -m64 -march=haswell"
-export LDFLAGS="$LDFLAGS -m64 -march=haswell"
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
 %configure --disable-static --enable-intel-sse --enable-hardware-optimizations
 make  %{?_smp_mflags}
 popd
@@ -152,7 +163,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1604898788
+export SOURCE_DATE_EPOCH=1633757183
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpng
 cp %{_builddir}/libpng-1.6.37/LICENSE %{buildroot}/usr/share/package-licenses/libpng/fc3951ba26fe1914759f605696a1d23e3b41766f
@@ -167,9 +178,16 @@ pushd %{buildroot}/usr/lib32/pkgconfig
 for i in *.pc ; do ln -s $i 32$i ; done
 popd
 fi
+if [ -d %{buildroot}/usr/share/pkgconfig ]
+then
+pushd %{buildroot}/usr/share/pkgconfig
+for i in *.pc ; do ln -s $i 32$i ; done
+popd
+fi
 popd
 pushd ../buildavx2/
-%make_install_avx2
+%make_install_v3
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot}/usr/share/clear/optimized-elf/ %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 popd
 %make_install
 
@@ -178,12 +196,11 @@ popd
 
 %files bin
 %defattr(-,root,root,-)
-/usr/bin/haswell/png-fix-itxt
-/usr/bin/haswell/pngfix
 /usr/bin/libpng-config
 /usr/bin/libpng16-config
 /usr/bin/png-fix-itxt
 /usr/bin/pngfix
+/usr/share/clear/optimized-elf/bin*
 
 %files dev
 %defattr(-,root,root,-)
@@ -193,8 +210,6 @@ popd
 /usr/include/png.h
 /usr/include/pngconf.h
 /usr/include/pnglibconf.h
-/usr/lib64/haswell/libpng.so
-/usr/lib64/haswell/libpng16.so
 /usr/lib64/libpng.so
 /usr/lib64/libpng16.so
 /usr/lib64/pkgconfig/libpng.pc
@@ -211,12 +226,15 @@ popd
 /usr/lib32/pkgconfig/libpng.pc
 /usr/lib32/pkgconfig/libpng16.pc
 
+%files filemap
+%defattr(-,root,root,-)
+/usr/share/clear/filemap/filemap-libpng
+
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/haswell/libpng16.so.16
-/usr/lib64/haswell/libpng16.so.16.37.0
 /usr/lib64/libpng16.so.16
 /usr/lib64/libpng16.so.16.37.0
+/usr/share/clear/optimized-elf/lib*
 
 %files lib32
 %defattr(-,root,root,-)
