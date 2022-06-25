@@ -4,7 +4,7 @@
 #
 Name     : libpng
 Version  : 1.6.37
-Release  : 67
+Release  : 68
 URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.37/libpng-1.6.37.tar.xz
 Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.37/libpng-1.6.37.tar.xz
 Summary  : Loads and saves PNG files
@@ -120,7 +120,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1656047817
+export SOURCE_DATE_EPOCH=1656131630
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -163,7 +163,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1656047817
+export SOURCE_DATE_EPOCH=1656131630
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpng
 cp %{_builddir}/libpng-1.6.37/LICENSE %{buildroot}/usr/share/package-licenses/libpng/fc3951ba26fe1914759f605696a1d23e3b41766f
