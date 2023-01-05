@@ -4,7 +4,7 @@
 #
 Name     : libpng
 Version  : 1.6.39
-Release  : 75
+Release  : 76
 URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
 Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
 Summary  : Loads and saves PNG files
