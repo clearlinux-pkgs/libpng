@@ -5,7 +5,7 @@
 #
 Name     : libpng
 Version  : 1.6.39
-Release  : 77
+Release  : 78
 URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
 Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
 Summary  : Loads and saves PNG files
@@ -113,7 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683046485
+export SOURCE_DATE_EPOCH=1685638698
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -156,7 +156,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1683046485
+export SOURCE_DATE_EPOCH=1685638698
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpng
 cp %{_builddir}/libpng-%{version}/contrib/gregbook/COPYING %{buildroot}/usr/share/package-licenses/libpng/80b6f4fcbc19d7431482cba012e86f587828c1ba || :
@@ -197,14 +197,13 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpng.so
-/V3/usr/lib64/libpng16.so
 /usr/include/libpng16/png.h
 /usr/include/libpng16/pngconf.h
 /usr/include/libpng16/pnglibconf.h
 /usr/include/png.h
 /usr/include/pngconf.h
 /usr/include/pnglibconf.h
+/usr/lib64/libpng.la
 /usr/lib64/libpng.so
 /usr/lib64/libpng16.so
 /usr/lib64/pkgconfig/libpng.pc
@@ -214,6 +213,7 @@ popd
 
 %files dev32
 %defattr(-,root,root,-)
+/usr/lib32/libpng.la
 /usr/lib32/libpng.so
 /usr/lib32/libpng16.so
 /usr/lib32/pkgconfig/32libpng.pc
@@ -223,7 +223,6 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpng16.so.16
 /V3/usr/lib64/libpng16.so.16.39.0
 /usr/lib64/libpng16.so.16
 /usr/lib64/libpng16.so.16.39.0
