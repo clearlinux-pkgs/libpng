@@ -4,13 +4,13 @@
 # Using build pattern: configure
 #
 Name     : libpng
-Version  : 1.6.39
-Release  : 80
-URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
-Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.39/libpng-1.6.39.tar.xz
+Version  : 1.6.40
+Release  : 81
+URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.40/libpng-1.6.40.tar.xz
+Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.40/libpng-1.6.40.tar.xz
 Summary  : Loads and saves PNG files
 Group    : Development/Tools
-License  : GPL-2.0 MIT zlib-acknowledgement
+License  : GPL-2.0 zlib-acknowledgement
 Requires: libpng-bin = %{version}-%{release}
 Requires: libpng-lib = %{version}-%{release}
 Requires: libpng-license = %{version}-%{release}
@@ -29,8 +29,8 @@ BuildRequires : zlib-dev32
 
 %description
 ================================
-See the note about version numbers near the top of png.h.
-See INSTALL for instructions on how to install libpng.
+See the note about version numbers near the top of `png.h`.
+See `INSTALL` for instructions on how to install libpng.
 
 %package bin
 Summary: bin components for the libpng package.
@@ -99,13 +99,13 @@ man components for the libpng package.
 
 
 %prep
-%setup -q -n libpng-1.6.39
-cd %{_builddir}/libpng-1.6.39
+%setup -q -n libpng-1.6.40
+cd %{_builddir}/libpng-1.6.40
 pushd ..
-cp -a libpng-1.6.39 build32
+cp -a libpng-1.6.40 build32
 popd
 pushd ..
-cp -a libpng-1.6.39 buildavx2
+cp -a libpng-1.6.40 buildavx2
 popd
 
 %build
@@ -113,7 +113,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1685643261
+export SOURCE_DATE_EPOCH=1687460629
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -156,12 +156,11 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1685643261
+export SOURCE_DATE_EPOCH=1687460629
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpng
 cp %{_builddir}/libpng-%{version}/contrib/gregbook/COPYING %{buildroot}/usr/share/package-licenses/libpng/80b6f4fcbc19d7431482cba012e86f587828c1ba || :
 cp %{_builddir}/libpng-%{version}/contrib/gregbook/LICENSE %{buildroot}/usr/share/package-licenses/libpng/aa4b9207aaff26bc16c562d6cd766a9eed49af1e || :
-cp %{_builddir}/libpng-%{version}/contrib/pngminus/LICENSE.txt %{buildroot}/usr/share/package-licenses/libpng/29883b5b9150592328072643614229f6d320bc6e || :
 pushd ../build32/
 %make_install32
 if [ -d  %{buildroot}/usr/lib32/pkgconfig ]
@@ -224,18 +223,17 @@ rm -f %{buildroot}*/usr/lib64/libpng.la
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpng16.so.16.39.0
+/V3/usr/lib64/libpng16.so.16.40.0
 /usr/lib64/libpng16.so.16
-/usr/lib64/libpng16.so.16.39.0
+/usr/lib64/libpng16.so.16.40.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libpng16.so.16
-/usr/lib32/libpng16.so.16.39.0
+/usr/lib32/libpng16.so.16.40.0
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libpng/29883b5b9150592328072643614229f6d320bc6e
 /usr/share/package-licenses/libpng/80b6f4fcbc19d7431482cba012e86f587828c1ba
 /usr/share/package-licenses/libpng/aa4b9207aaff26bc16c562d6cd766a9eed49af1e
 
