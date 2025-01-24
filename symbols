@@ -32,6 +32,8 @@ libpng16.so.16:png_get_cHRM_XYZ@@PNG16_0
 libpng16.so.16:png_get_cHRM_XYZ_fixed@@PNG16_0
 libpng16.so.16:png_get_cHRM_fixed@@PNG16_0
 libpng16.so.16:png_get_cICP@@PNG16_0
+libpng16.so.16:png_get_cLLI@@PNG16_0
+libpng16.so.16:png_get_cLLI_fixed@@PNG16_0
 libpng16.so.16:png_get_channels@@PNG16_0
 libpng16.so.16:png_get_chunk_cache_max@@PNG16_0
 libpng16.so.16:png_get_chunk_malloc_max@@PNG16_0
@@ -59,6 +61,8 @@ libpng16.so.16:png_get_io_chunk_type@@PNG16_0
 libpng16.so.16:png_get_io_ptr@@PNG16_0
 libpng16.so.16:png_get_io_state@@PNG16_0
 libpng16.so.16:png_get_libpng_ver@@PNG16_0
+libpng16.so.16:png_get_mDCV@@PNG16_0
+libpng16.so.16:png_get_mDCV_fixed@@PNG16_0
 libpng16.so.16:png_get_mem_ptr@@PNG16_0
 libpng16.so.16:png_get_oFFs@@PNG16_0
 libpng16.so.16:png_get_pCAL@@PNG16_0
@@ -150,6 +154,8 @@ libpng16.so.16:png_set_cHRM_XYZ@@PNG16_0
 libpng16.so.16:png_set_cHRM_XYZ_fixed@@PNG16_0
 libpng16.so.16:png_set_cHRM_fixed@@PNG16_0
 libpng16.so.16:png_set_cICP@@PNG16_0
+libpng16.so.16:png_set_cLLI@@PNG16_0
+libpng16.so.16:png_set_cLLI_fixed@@PNG16_0
 libpng16.so.16:png_set_check_for_invalid_index@@PNG16_0
 libpng16.so.16:png_set_chunk_cache_max@@PNG16_0
 libpng16.so.16:png_set_chunk_malloc_max@@PNG16_0
@@ -184,6 +190,8 @@ libpng16.so.16:png_set_invert_alpha@@PNG16_0
 libpng16.so.16:png_set_invert_mono@@PNG16_0
 libpng16.so.16:png_set_keep_unknown_chunks@@PNG16_0
 libpng16.so.16:png_set_longjmp_fn@@PNG16_0
+libpng16.so.16:png_set_mDCV@@PNG16_0
+libpng16.so.16:png_set_mDCV_fixed@@PNG16_0
 libpng16.so.16:png_set_mem_fn@@PNG16_0
 libpng16.so.16:png_set_oFFs@@PNG16_0
 libpng16.so.16:png_set_option@@PNG16_0
