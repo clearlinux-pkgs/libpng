@@ -6,10 +6,10 @@
 # autospec commit: 65cf152
 #
 Name     : libpng
-Version  : 1.6.49
-Release  : 89
-URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.49/libpng-1.6.49.tar.gz
-Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.49/libpng-1.6.49.tar.gz
+Version  : 1.6.50
+Release  : 90
+URL      : https://sourceforge.net/projects/libpng/files/libpng16/1.6.50/libpng-1.6.50.tar.gz
+Source0  : https://sourceforge.net/projects/libpng/files/libpng16/1.6.50/libpng-1.6.50.tar.gz
 Summary  : Loads and saves PNG files
 Group    : Development/Tools
 License  : GPL-2.0 MIT zlib-acknowledgement
@@ -101,13 +101,13 @@ man components for the libpng package.
 
 
 %prep
-%setup -q -n libpng-1.6.49
-cd %{_builddir}/libpng-1.6.49
+%setup -q -n libpng-1.6.50
+cd %{_builddir}/libpng-1.6.50
 pushd ..
-cp -a libpng-1.6.49 build32
+cp -a libpng-1.6.50 build32
 popd
 pushd ..
-cp -a libpng-1.6.49 buildavx2
+cp -a libpng-1.6.50 buildavx2
 popd
 
 %build
@@ -115,7 +115,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1749826244
+export SOURCE_DATE_EPOCH=1751551523
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -180,7 +180,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1749826244
+export SOURCE_DATE_EPOCH=1751551523
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libpng
 cp %{_builddir}/libpng-%{version}/ci/LICENSE_MIT.txt %{buildroot}/usr/share/package-licenses/libpng/218fc8c15534e8840cbff5801582c450c97869ab || :
@@ -253,14 +253,14 @@ rm -f %{buildroot}*/usr/lib64/libpng.la
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libpng16.so.16.49.0
+/V3/usr/lib64/libpng16.so.16.50.0
 /usr/lib64/libpng16.so.16
-/usr/lib64/libpng16.so.16.49.0
+/usr/lib64/libpng16.so.16.50.0
 
 %files lib32
 %defattr(-,root,root,-)
 /usr/lib32/libpng16.so.16
-/usr/lib32/libpng16.so.16.49.0
+/usr/lib32/libpng16.so.16.50.0
 
 %files license
 %defattr(0644,root,root,0755)
